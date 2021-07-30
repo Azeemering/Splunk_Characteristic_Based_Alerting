@@ -1,0 +1,20 @@
+| datamodel Web search summariesonly=true 
+| search Web.status>=200 Web.status <300 
+| eventstats distinct_count(Web.src) as srcCount by host,Web.uri_path
+| dedup host,Web.uri_path
+| eventstats avg(srcCount) as avgSrc by host
+| eventstats stdev(srcCount) as stdevSrc by host
+| eventstats p5(srcCount) as p5Src by host
+| eval low=if(avgSrc-2*stdevSrc<0, p5Src, avgSrc-2*stdevSrc)
+| eval low=if(low>p5Src,round(p5Src,0),round(low,0))
+| eval check=if(srcCount<low,"true","false")
+| eval avgSrc=round(avgSrc,0)
+| eval nowDate=strftime(now(),"%m/%d/%y" )
+| eval eventDate=strftime(_time,"%m/%d/%y" )
+| eval _time=now()
+| eval cbaTactic = "unusuallyLowSrcCountFromHostURI"
+| rename Web.uri_path as uri_path Web.src as src_ip Web.http_user_agent as http_user_agent host as device
+| search check=true eventDate=nowDate 
+| dedup _time,device,cbaTactic,uri_path,src_ip,check,srcCount,low,avgSrc,stdevSrc,p5Src
+| table _time,device,cbaTactic,uri_path,src_ip,check,srcCount,low,avgSrc,stdevSrc,p5Src
+| collect index=cbadetections addtime=true
