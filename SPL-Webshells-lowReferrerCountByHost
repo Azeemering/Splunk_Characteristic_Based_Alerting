@@ -16,4 +16,4 @@
 | search test="true" own="false" eventDate=nowDate NOT Web.http_referrer IN ()
 | dedup device,http_referrer
 | table _time,device,cbaTactic,uri_path,src_ip,http_referrer,own,test,eventCount,average,stdDev,median,p10
-| collect index=cbadetections addtime=true
+| collect index=cbadetection addtime=true
