@@ -17,4 +17,4 @@
 | search check=true eventDate=nowDate 
 | dedup _time,device,cbaTactic,uri_path,src_ip,check,srcCount,low,avgSrc,stdevSrc,p5Src
 | table _time,device,cbaTactic,uri_path,src_ip,check,srcCount,low,avgSrc,stdevSrc,p5Src
-| collect index=cbadetections addtime=true
+| collect index=cbadetection addtime=true
