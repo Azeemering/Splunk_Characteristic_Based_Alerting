@@ -1,4 +1,4 @@
-# characteristic-based-alerting
+# Splunk characteristic-based-alerting
 
 
 Requirements
