@@ -19,4 +19,4 @@
 | search test="true" own="false" nowDate=eventDate NOT Web.src="127.0.0.1" NOT Web.http_user_agent IN ()
 | dedup _time,device,http_user_agent,src_ip
 | table _time,device,cbaTactic,uri_path,src_ip,http_user_agent,eventCount,average,stdDev,median,p10,low
-| collect index=cbadetections addtime=true
+| collect index=cbadetection addtime=true
