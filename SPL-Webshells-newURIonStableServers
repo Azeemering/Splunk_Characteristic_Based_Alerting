@@ -20,4 +20,4 @@
 | search test="true" newEvent="true"
 | dedup device,uri_path
 | table _time,device,cbaTactic,uri_path,firstSeenDate,lastSeenDate,dateNow,newEvent,age,average,stdDev,p20,low,test
-| collect index=cbadetections addtime=true
+| collect index=cbadetection addtime=true
