@@ -23,4 +23,4 @@
 | rename Web.uri_path as uri_path Web.src as src_ip Web.http_user_agent as http_user_agent host as device
 | dedup device,uri_path,src_ip,test,eventCount,length,range,rangePer,average,low,high,stdDev,p10,p90,query
 | table _time,device,cbaTactic,uri_path,src_ip,test,eventCount,length,range,rangePer,average,low,high,stdDev,p10,p90,query
-| collect index=cbadetections addtime=true
+| collect index=cbadetection addtime=true
