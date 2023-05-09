@@ -29,4 +29,4 @@
 | search test!="false" nowDate-eventDate
 | dedup _time,device,cbaTactic,src_ip,uri_path,test,sessionBytes,highSessionBytes,duration,highDuration,avgDuration,p95Duration,stdevDuration,avgSessionBytes,p95SessionBytes,stdevSessionBytes
 | table _time,device,cbaTactic,src_ip,uri_path,test,sessionBytes,highSessionBytes,duration,highDuration,avgDuration,p95Duration,stdevDuration,avgSessionBytes,p95SessionBytes,stdevSessionBytes
-| collect index=cbadetections addtime=true
+| collect index=cbadetection addtime=true
